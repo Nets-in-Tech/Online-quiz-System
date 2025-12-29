@@ -73,5 +73,8 @@ function nextQuestion() {
 }
 
 function closeOverlay() {
-    document.getElementById("resultOverlay").style.display = "none";
+  window.location.replace("qlist.php?course_id=" + courseId);
 }
+
+
+
