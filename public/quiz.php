@@ -7,9 +7,10 @@ if (!isset($_GET['quiz_id'])) {
 
 $quiz_id = intval($_GET['quiz_id']);
 
-// Fetch quiz info
-$quiz_result = $conn->query("SELECT title FROM quizzes WHERE id=$quiz_id");
+// Fetch quiz info (include course_id so we can redirect later)
+$quiz_result = $conn->query("SELECT id, title, course_id FROM quizzes WHERE id=$quiz_id");
 $quiz = $quiz_result->fetch_assoc();
+
 
 // Fetch questions for this quiz
 $question_result = $conn->query("SELECT * FROM questions WHERE quiz_id=$quiz_id");
@@ -27,6 +28,10 @@ while($q = $question_result->fetch_assoc()) {
         // Pass PHP questions into JavaScript
         const questions = <?php echo json_encode($questions); ?>;
     </script>
+    <script>
+        const courseId = <?php echo json_encode($quiz['course_id']); ?>;
+    </script>
+
     <script src="script.js"></script>
 </head>
 <body>
