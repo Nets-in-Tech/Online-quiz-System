@@ -34,9 +34,11 @@ $result = $conn->query("
         <?php while($row = $result->fetch_assoc()): ?>
             <div class="quiz-item">
                 <div>
+                    <a href="quiz.php?quiz_id=<?php echo $row['id']; ?>">
                     <strong><?php echo $row['title']; ?></strong><br>
                     <em><?php echo $row['course_name']; ?></em><br>
                     <?php if (!empty($row['description'])) echo $row['description']; ?>
+                    </a>
                 </div>
                 <div>
                     <a href="quizEdit.php?quiz_id=<?php echo $row['id']; ?>" class="btn">Edit</a>

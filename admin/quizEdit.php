@@ -43,7 +43,7 @@ if ($quizId) {
     <h1><?php echo $quizId ? "Edit Quiz" : "Create Quiz"; ?></h1>
 
     <div class="form-container">
-        <form method="post" action="quizSave.php">
+        <form method="post" action="saveQuestion.php">
             <?php if ($quizId): ?>
                 <input type="hidden" name="quiz_id" value="<?php echo $quizId; ?>">
                 <input type="hidden" name="mode" value="edit">
