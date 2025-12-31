@@ -1,10 +1,40 @@
-body { 
+
+html,body { 
+    height:100%;
+    margin: 0; /* remove default body margin */ 
+    padding: 0;
+  background-color: #ffffff;
+  color: #000000;
+}
+
+/* Dark mode */
+body.dark-mode {
+  background-color: #121212;
+  color: #f1f1f1;
+}
+
+body.dark-mode .quiz-item,
+body.dark-mode .question-block {
+  background-color: #1e1e1e;
+  border-color: #333;
+}
+
+body.dark-mode .btn {
+  background-color: #444;
+  color: #fff;
+}
+body.login-page {
+    overflow-y: hidden; 
+}
+.upper{
+    min-height: 100vh;
+    width:100%;
     display: flex; 
     justify-content: center; /* horizontal */ 
     align-items: center; /* vertical */ 
-    height: 100vh; /* full viewport height */ 
-    margin: 0; /* remove default body margin */ 
+    overflow: hidden;
 }
+
 .login-container {
   display: flex;
   flex-direction: column;   /* stack children vertically */
@@ -19,7 +49,7 @@ form button,
 form label {
   margin-bottom: 1rem; /* adds space below each element */
 }
-form{
+.upper form{
     text-align: center;
 }
 

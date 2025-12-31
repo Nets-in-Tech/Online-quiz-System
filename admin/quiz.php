@@ -1,6 +1,7 @@
 <?php
 include '../includes/session.php';
 include '../includes/db.php';
+include '../public/header.php';
 
 $quizId = $_GET['quiz_id'] ?? null;
 
@@ -40,7 +41,7 @@ $result = $conn->query("
 <html>
 <head>
     <title>Quiz Details</title>
-    <link rel="stylesheet" href="./public/style.css">
+    <link rel="stylesheet" href="style.css">
     <style>
         .quiz-container { margin:20px; }
         .question-block { border:1px solid #ccc; padding:10px; margin-bottom:10px; }

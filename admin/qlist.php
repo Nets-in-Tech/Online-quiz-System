@@ -1,6 +1,7 @@
 <?php
 include '../includes/session.php';
 include '../includes/db.php';
+include '../public/header.php';
 
 // Handle quiz deletion 
 if (isset($_GET['delete_id'])) {
@@ -14,7 +15,8 @@ if (isset($_GET['delete_id'])) {
     $stmtQuiz->execute(); 
     // Redirect back to qlist.php without delete_id in URL 
     header("Location: qlist.php"); 
-    exit; }
+    exit; 
+}
 
 // Fetch quizzes with course names
 $result = $conn->query("
@@ -27,7 +29,7 @@ $result = $conn->query("
 <html>
 <head>
     <title>Admin - Quiz List</title>
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="style.css">
     <style>
         .quiz-list { margin:20px; }
         .quiz-item { border:1px solid #ccc; padding:10px; margin-bottom:10px; display:flex; justify-content:space-between; }

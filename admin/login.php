@@ -1,5 +1,6 @@
 <?php
 include '../includes/db.php';
+include '../public/header.php';
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -27,7 +28,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Admin Login</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="login-page">
+    <div class="upper">
     <div class="login-container">
     <h1>Admin Login</h1>
     <?php if (!empty($error)) echo "<p style='color:red;'>$error</p>"; ?>
@@ -36,6 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <label>Password: <input type="password" name="password"></label><br>
         <button type="submit">Login</button>
     </form>
+    </div>
     </div>
 </body>
 </html>
