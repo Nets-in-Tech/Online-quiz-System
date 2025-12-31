@@ -3,73 +3,72 @@ include '../includes/session.php';
 include '../includes/db.php';
 
 $quizId = $_GET['quiz_id'] ?? null;
-$title = $_GET['title'] ?? null;
-$description = $_GET['description'] ?? null;
 
-$quiz = null;
+if (!$quizId) {
+    die("No quiz selected.");
+}
+
+// Fetch quiz info
+$quizRes = $conn->query("SELECT * FROM quizzes WHERE id=$quizId");
+$quiz = $quizRes->fetch_assoc();
+
+// Fetch questions for this quiz
 $questions = [];
+$questionsRes = $conn->query("SELECT * FROM questions WHERE quiz_id=$quizId");
+while ($row = $questionsRes->fetch_assoc()) {
+    $questions[] = $row;
+}
 
-if ($quizId) {
-    // EDIT MODE
-    $quizRes = $conn->query("SELECT q.*, c.name AS course_name FROM quizzes q JOIN courses c ON q.course_id=c.id WHERE q.id=$quizId");
-    $quiz = $quizRes->fetch_assoc();
+// Handle deletion if delete_id is passed
+if (isset($_GET['delete_id'])) {
+    $deleteId = intval($_GET['delete_id']);
+    $stmt = $conn->prepare("DELETE FROM questions WHERE id = ?");
+    $stmt->bind_param("i", $deleteId);
+    $stmt->execute();
 
-    $questionsRes = $conn->query("SELECT * FROM questions WHERE quiz_id=$quizId");
-    while ($row = $questionsRes->fetch_assoc()) {
-        $questions[] = $row;
-    }
-} else {
-    // CREATE MODE
-    $quiz = [
-        'title' => $title ?? '',
-        'description' => $description ?? '',
-        'course_name' => '' // not editable here
-    ];
+    // Redirect back to quiz.php without delete_id in URL
+    header("Location: quiz.php?quiz_id=" . $quizId);
+    exit;
 }
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-    <title><?php echo $quizId ? "Edit Quiz" : "Create Quiz"; ?></title>
+    <title>Quiz Details</title>
     <link rel="stylesheet" href="../style.css">
     <style>
-        .form-container { margin:20px; }
+        .quiz-container { margin:20px; }
         .question-block { border:1px solid #ccc; padding:10px; margin-bottom:10px; }
-        .btn { padding:6px 12px; background:#007bff; color:white; border:none; cursor:pointer; margin-right:10px; }
-        .btn:hover { background:#0056b3; }
+        .btn { padding:6px 12px; background:#dc3545; color:white; border:none; cursor:pointer; }
+        .btn:hover { background:#a71d2a; }
     </style>
 </head>
 <body>
-    
-      <h1><?php echo $quizId ? "Edit Quiz" : "Create Quiz"; ?></h1>
+    <div class="quiz-container">
+        <h1><?php echo htmlspecialchars($quiz['title']); ?></h1>
+        <p><?php echo nl2br(htmlspecialchars($quiz['description'])); ?></p>
 
-    <div>
-            <!-- Course shown but not editable -->
-            <label>Course:</label>
-            <strong><?php echo htmlspecialchars($quiz['course_name']); ?></strong><br><br>
-
-            <label>Quiz Title:</label>
-            <input type="text" name="title" value="<?php echo htmlspecialchars($quiz['title']); ?>" required><br><br>
-
-            <label>Description:</label>
-            <textarea name="description"><?php echo htmlspecialchars($quiz['description']); ?></textarea><br><br>
-
-            <h3>Questions</h3>
+        <h3>Questions</h3>
+        <?php if (empty($questions)): ?>
+            <p>No questions found for this quiz.</p>
+        <?php else: ?>
             <?php foreach ($questions as $q): ?>
                 <div class="question-block">
-                    <input type="hidden" name="question_ids[]" value="<?php echo $q['id']; ?>">
-                    <label>Question:</label>
-                    <input type="text" name="question_texts[]" value="<?php echo htmlspecialchars($q['question_text']); ?>" required><br>
-                    <label>Option A:</label>
-                    <input type="text" name="option_as[]" value="<?php echo htmlspecialchars($q['option_a']); ?>"><br>
-                    <label>Option B:</label>
-                    <input type="text" name="option_bs[]" value="<?php echo htmlspecialchars($q['option_b']); ?>"><br>
-                    <label>Option C:</label>
-                    <input type="text" name="option_cs[]" value="<?php echo htmlspecialchars($q['option_c']); ?>"><br>
-                    <label>Correct Answer (A/B/C):</label>
-                    <input type="text" name="correct_answers[]" value="<?php echo htmlspecialchars($q['correct_answer']); ?>" maxlength="1"><br>
+                    <p><strong>Question:</strong> <?php echo htmlspecialchars($q['question_text']); ?></p>
+                    <p><strong>Option A:</strong> <?php echo htmlspecialchars($q['option_a']); ?></p>
+                    <p><strong>Option B:</strong> <?php echo htmlspecialchars($q['option_b']); ?></p>
+                    <p><strong>Option C:</strong> <?php echo htmlspecialchars($q['option_c']); ?></p>
+                    <p><strong>Correct Answer:</strong> <?php echo htmlspecialchars($q['correct_answer']); ?></p>
+
+                    <!-- Delete button -->
+                    <a class="btn" 
+                       href="quiz.php?quiz_id=<?php echo $quizId; ?>&delete_id=<?php echo $q['id']; ?>" 
+                       onclick="return confirm('Are you sure you want to delete this question?');">
+                       Delete
+                    </a>
                 </div>
             <?php endforeach; ?>
+        <?php endif; ?>
     </div>
 </body>
 </html>

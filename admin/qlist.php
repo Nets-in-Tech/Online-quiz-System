@@ -2,6 +2,20 @@
 include '../includes/session.php';
 include '../includes/db.php';
 
+// Handle quiz deletion 
+if (isset($_GET['delete_id'])) {
+    $deleteId = intval($_GET['delete_id']); 
+    // Delete all questions belonging to this quiz 
+    $stmtQ = $conn->prepare("DELETE FROM questions WHERE quiz_id = ?"); 
+    $stmtQ->bind_param("i", $deleteId); $stmtQ->execute(); 
+    // Delete the quiz itself 
+    $stmtQuiz = $conn->prepare("DELETE FROM quizzes WHERE id = ?"); 
+    $stmtQuiz->bind_param("i", $deleteId); 
+    $stmtQuiz->execute(); 
+    // Redirect back to qlist.php without delete_id in URL 
+    header("Location: qlist.php"); 
+    exit; }
+
 // Fetch quizzes with course names
 $result = $conn->query("
     SELECT q.id, q.title, q.description, c.name AS course_name
@@ -34,14 +48,19 @@ $result = $conn->query("
         <?php while($row = $result->fetch_assoc()): ?>
             <div class="quiz-item">
                 <div>
-                    <a href="quiz.php?quiz_id=<?php echo $row['id']; ?>">
                     <strong><?php echo $row['title']; ?></strong><br>
                     <em><?php echo $row['course_name']; ?></em><br>
                     <?php if (!empty($row['description'])) echo $row['description']; ?>
-                    </a>
                 </div>
                 <div>
+                    <a href="quiz.php?quiz_id=<?php echo $row['id']; ?>" class="btn">Open</a>
                     <a href="quizEdit.php?quiz_id=<?php echo $row['id']; ?>" class="btn">Edit</a>
+                    
+                    <a href="qlist.php?delete_id=<?php echo $row['id']; ?>" 
+                        class="btn" style="background:#dc3545;" 
+                        onclick="return confirm('Are you sure you want to delete this quiz and all its questions?');">
+                        Delete
+                    </a>
                 </div>
             </div>
         <?php endwhile; ?>
