@@ -1,0 +1,150 @@
+
+html,body { 
+    
+    margin: 0; /* remove default body margin */ 
+    padding: 0;
+  background-color: #ffffff;
+  color: #000000;
+}
+
+/* Dark mode */
+body.dark-mode {
+  background-color: #121212;
+  color: #f1f1f1;
+}
+
+body.dark-mode .quiz-item,
+body.dark-mode .question-block {
+  background-color: #1e1e1e;
+  border-color: #333;
+}
+
+body.login-page {
+    overflow-y: hidden; 
+}
+.upper{
+    min-height: 100vh;
+    width:100%;
+    display: flex; 
+    justify-content: center; /* horizontal */ 
+    align-items: center; /* vertical */ 
+    overflow: hidden;
+}
+.login-container {
+  display: flex;
+  flex-direction: column;   /* stack children vertically */
+  justify-content: center;  /* center vertically */
+  align-items: center;      /* center horizontally */
+  width: 30%;
+  padding: 20px;            /* instead of fixed height */
+  box-shadow: 0px 0px 2px 4px grey;
+}
+form input,
+form button,
+form label {
+  margin-bottom: 1rem; /* adds space below each element */
+}
+.upper form{
+    text-align: center;
+}
+.btnt{
+  margin-top:2rem;
+  margin-left: 2rem;
+}
+
+
+
+/*quiz list*/
+
+body.quiz{
+  padding: 0;
+  overflow-y: auto; 
+  /* scroll only if needed */ 
+  min-height: 100vh;
+  margin:0;
+}
+.H{
+  padding:2rem;
+}
+.quiz-list { 
+  margin:20px; 
+  overflow-y: auto;
+}
+.quiz-item { 
+  box-shadow:0 0.5rem 0.5rem 0.1rem #848383; 
+  padding:2rem; 
+  margin-bottom:3rem; 
+  display:flex; 
+  justify-content:space-between; 
+  align-items: center;
+}
+.btn { 
+  padding:6px 12px; 
+  background:#3c73ae; 
+  color:white; 
+  border:none; 
+  cursor:pointer; 
+  margin-right:3rem;
+  text-decoration: none;
+}
+.O{
+  background: #edacac;
+  color:rgb(80, 78, 78);
+}
+.D{
+  background-color:#82383f;
+}
+.btn:hover { 
+  background:#0056b3; 
+}
+/* Popup modal */
+.modal { 
+  display:none; 
+  position:fixed; 
+  top:0; 
+  left:0; 
+  width:100%; 
+  height:100%; 
+  background:rgba(0,0,0,0.6); 
+  justify-content:center; 
+  align-items:center; 
+}
+.modal-content { 
+  background:white; 
+  padding:20px; 
+  border-radius:8px; 
+  width:400px; 
+}
+.close { 
+  float:right; 
+  cursor:pointer; 
+  font-size:20px; 
+}
+
+
+
+
+/*quiz.php*/
+
+.quiz-container { 
+  margin:20px; 
+}
+.question-block { 
+  border:1px solid #ccc; 
+  padding:10px; 
+  margin-bottom:10px; 
+}
+
+
+
+
+/*quiz-Edit*/
+.form-container { 
+  margin:20px; 
+}
+.question-block { 
+  border:1px solid #ccc; 
+  padding:10px; 
+  margin-bottom:10px; 
+}
+

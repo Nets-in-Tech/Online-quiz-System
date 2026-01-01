@@ -1,6 +1,7 @@
 <?php
 include '../includes/session.php';
 include '../includes/db.php';
+include '../public/header.php';
 
 $quizId = $_GET['quiz_id'] ?? null;
 $title = $_GET['title'] ?? null;
@@ -31,15 +32,10 @@ if ($quizId) {
 <html>
 <head>
     <title><?php echo $quizId ? "Edit Quiz" : "Create Quiz"; ?></title>
-    <link rel="stylesheet" href="../style.css">
-    <style>
-        .form-container { margin:20px; }
-        .question-block { border:1px solid #ccc; padding:10px; margin-bottom:10px; }
-        .btn { padding:6px 12px; background:#007bff; color:white; border:none; cursor:pointer; margin-right:10px; }
-        .btn:hover { background:#0056b3; }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="quiz">
+    <div class="H">
     <h1><?php echo $quizId ? "Edit Quiz" : "Create Quiz"; ?></h1>
 
     <div class="form-container">
@@ -96,6 +92,7 @@ if ($quizId) {
             <button type="submit" name="action" value="add" class="btn">Add Question</button>
             <button type="submit" name="action" value="finish" class="btn">Finish</button>
         </form>
+    </div>
     </div>
 </body>
 </html>

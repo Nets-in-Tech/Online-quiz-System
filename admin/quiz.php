@@ -1,6 +1,7 @@
 <?php
 include '../includes/session.php';
 include '../includes/db.php';
+include '../public/header.php';
 
 $quizId = $_GET['quiz_id'] ?? null;
 
@@ -40,15 +41,10 @@ $result = $conn->query("
 <html>
 <head>
     <title>Quiz Details</title>
-    <link rel="stylesheet" href="./public/style.css">
-    <style>
-        .quiz-container { margin:20px; }
-        .question-block { border:1px solid #ccc; padding:10px; margin-bottom:10px; }
-        .btn { padding:6px 12px; background:#dc3545; color:white; border:none; cursor:pointer; }
-        .btn:hover { background:#a71d2a; }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="quiz">
+    <div class="H">
     <div class="quiz-container">
         <h1><?php echo htmlspecialchars($quiz['title']); ?></h1>
         <p><?php echo nl2br(htmlspecialchars($quiz['description'])); ?></p>
@@ -67,7 +63,7 @@ $result = $conn->query("
                     <p><strong>Correct Answer:</strong> <?php echo htmlspecialchars($q['correct_answer']); ?></p>
 
                     <!-- Delete button -->
-                    <a class="btn" 
+                    <a class="btn D" 
                        href="quiz.php?quiz_id=<?php echo $quizId; ?>&delete_id=<?php echo $q['id']; ?>" 
                        onclick="return confirm('Are you sure you want to delete this question?');">
                        Delete
@@ -75,6 +71,7 @@ $result = $conn->query("
                 </div>
             <?php endforeach; ?>
         <?php endif; ?>
+    </div>
     </div>
 </body>
 </html>
