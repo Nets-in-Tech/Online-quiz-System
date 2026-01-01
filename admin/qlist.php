@@ -32,6 +32,7 @@ $result = $conn->query("
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="quiz">
+    <div class="H">
     <h1>Quiz Management</h1>
 
     <button class="btn" onclick="openModal()">Create Quiz</button>
@@ -74,7 +75,7 @@ $result = $conn->query("
     </form>
   </div>
 </div>
-
+</div>
 
     <script>
         function openModal() {
@@ -84,5 +85,6 @@ $result = $conn->query("
             document.getElementById("quizModal").style.display = "none";
         }
     </script>
+
 </body>
 </html>

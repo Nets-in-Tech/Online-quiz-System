@@ -1,5 +1,6 @@
 
 html,body { 
+    
     margin: 0; /* remove default body margin */ 
     padding: 0;
   background-color: #ffffff;
@@ -18,10 +19,6 @@ body.dark-mode .question-block {
   border-color: #333;
 }
 
-body.dark-mode .btn {
-  background-color: #444;
-  color: #fff;
-}
 body.login-page {
     overflow-y: hidden; 
 }
@@ -50,17 +47,28 @@ form label {
 .upper form{
     text-align: center;
 }
-
+.btnt{
+  margin-top:2rem;
+  margin-left: 2rem;
+}
 
 
 
 /*quiz list*/
 
 body.quiz{
-  padding: 2rem;
+  padding: 0;
+  overflow-y: auto; 
+  /* scroll only if needed */ 
+  min-height: 100vh;
+  margin:0;
+}
+.H{
+  padding:2rem;
 }
 .quiz-list { 
   margin:20px; 
+  overflow-y: auto;
 }
 .quiz-item { 
   box-shadow:0 0.5rem 0.5rem 0.1rem #848383; 

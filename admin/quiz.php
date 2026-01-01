@@ -44,6 +44,7 @@ $result = $conn->query("
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="quiz">
+    <div class="H">
     <div class="quiz-container">
         <h1><?php echo htmlspecialchars($quiz['title']); ?></h1>
         <p><?php echo nl2br(htmlspecialchars($quiz['description'])); ?></p>
@@ -70,6 +71,7 @@ $result = $conn->query("
                 </div>
             <?php endforeach; ?>
         <?php endif; ?>
+    </div>
     </div>
 </body>
 </html>
