@@ -31,7 +31,7 @@ $result = $conn->query("
     <title>Admin - Quiz List</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="quizlist">
+<body class="quiz">
     <h1>Quiz Management</h1>
 
     <button class="btn" onclick="openModal()">Create Quiz</button>
@@ -45,11 +45,11 @@ $result = $conn->query("
                     <?php if (!empty($row['description'])) echo $row['description']; ?>
                 </div>
                 <div>
-                    <a href="quiz.php?quiz_id=<?php echo $row['id']; ?>" class="btn">Open</a>
-                    <a href="quizEdit.php?quiz_id=<?php echo $row['id']; ?>" class="btn">Edit</a>
+                    <a href="quiz.php?quiz_id=<?php echo $row['id']; ?>" class="btn O">Open</a>
+                    <a href="quizEdit.php?quiz_id=<?php echo $row['id']; ?>" class="btn E">Edit</a>
                     
                     <a href="qlist.php?delete_id=<?php echo $row['id']; ?>" 
-                        class="btn" style="background:#dc3545;" 
+                        class="btn D"
                         onclick="return confirm('Are you sure you want to delete this quiz and all its questions?');">
                         Delete
                     </a>

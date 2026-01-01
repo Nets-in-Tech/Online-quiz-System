@@ -34,7 +34,7 @@ if ($quizId) {
     <title><?php echo $quizId ? "Edit Quiz" : "Create Quiz"; ?></title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="quiz">
     <h1><?php echo $quizId ? "Edit Quiz" : "Create Quiz"; ?></h1>
 
     <div class="form-container">
