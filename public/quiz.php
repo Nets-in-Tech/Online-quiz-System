@@ -1,6 +1,6 @@
 <?php
 include '../includes/db.php';
-include '../public/header.php';
+include 'header.php';
 
 if (!isset($_GET['quiz_id'])) {
     die("No quiz selected.");
@@ -36,6 +36,7 @@ while($q = $question_result->fetch_assoc()) {
     <script src="script.js"></script>
 </head>
 <body>
+    <div class="H">
     <h1><?php echo $quiz['title']; ?></h1>
 
     <div id="quiz-container"></div>
@@ -48,6 +49,7 @@ while($q = $question_result->fetch_assoc()) {
             <p id="scoreText"></p>
             <button onclick="closeOverlay()">Close</button>
         </div>
+    </div>
     </div>
 </body>
 </html>

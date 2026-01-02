@@ -1,10 +1,11 @@
 let currentIndex = 0;
 let score = 0;
 
-window.onload = () => {
+document.addEventListener("DOMContentLoaded", () => {
     showQuestion();
     document.getElementById("continueBtn").addEventListener("click", nextQuestion);
-};
+});
+
 
 function showQuestion() {
     let container = document.getElementById("quiz-container");
