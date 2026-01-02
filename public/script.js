@@ -15,9 +15,11 @@ function showQuestion() {
     let questionDiv = document.createElement("div");
     questionDiv.className = "question";
 
-    let p = document.createElement("p");
-    p.textContent = q.question_text;
-    questionDiv.appendChild(p);
+let p = document.createElement("p");
+// Add 1 because currentIndex starts at 0
+p.textContent = `${currentIndex + 1}. ${q.question_text}`;
+questionDiv.appendChild(p);
+
 
     ["A","B","C"].forEach(opt => {
         if (q["option_" + opt.toLowerCase()]) {

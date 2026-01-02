@@ -120,5 +120,15 @@ label {
 
 .H{
   padding:2rem;
+  margin-left:4rem;
+}
+.question p { 
+    font-weight: bold;
+    margin-bottom: 1rem; /* adds space below the question */ 
+} /* Space between each choice */ 
+.question label {
+    display: block; /* already in your script */ 
+    margin-left:1rem;
+    margin-bottom: 0.75rem; /* adds space between options */ 
 }
 
