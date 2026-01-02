@@ -1,5 +1,6 @@
 let currentIndex = 0;
 let score = 0;
+let hasAnswered = false;
 
 document.addEventListener("DOMContentLoaded", () => {
     showQuestion();
@@ -33,6 +34,7 @@ questionDiv.appendChild(p);
             input.value = opt;
 
             input.onclick = () => {
+                hasAnswered = true;
             // Disable all radios for this question once one is chosen
                 const allRadios = document.getElementsByName("answer");
                 allRadios.forEach(r => {
@@ -76,8 +78,18 @@ function nextQuestion() {
 }
 
 function closeOverlay() {
+  hasAnswered = false;
   window.location.replace("qlist.php?course_id=" + courseId);
 }
+
+window.addEventListener("beforeunload", (event) => {
+    if (hasAnswered) {
+        event.preventDefault();
+        // Chrome requires returnValue to be set
+        event.returnValue = "Your answers will be reset and you will start again. Are you sure?";
+    }
+});
+
 
 
 
