@@ -45,9 +45,11 @@ while($q = $question_result->fetch_assoc()) {
     <!-- Overlay for final score -->
     <div id="resultOverlay" class="overlay" style="display:none;">
         <div class="overlay-content">
-            <h2>Quiz Finished!</h2>
-            <p id="scoreText"></p>
-            <button onclick="closeOverlay()">Close</button>
+            <div class="result">
+               <h2>Quiz Finished!</h2>
+               <p id="scoreText"></p>
+               <button onclick="closeOverlay()" class="overbtn">Close</button>
+            </div>
         </div>
     </div>
     </div>

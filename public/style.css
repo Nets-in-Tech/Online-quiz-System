@@ -27,6 +27,10 @@ body.dark-mode .btnt {
 body.dark-mode .course-item {
    box-shadow:0 0.2rem 0.5rem 0rem #a6a5a5; 
 }
+body.dark-mode .result h2,
+body.dark-mode .result p{
+    color:#000000;
+}
 
 .btnt {
   background: none;
@@ -147,12 +151,31 @@ h1 {
 }
 
 .overlay-content {
-    width:55vw;
-    height:55vh;
+    margin:auto;
+    width:45vw;
+    height:45vh;
     background: white;
     padding: 20px;
     border-radius: 8px;
     text-align: center;
+    box-shadow: 0 0 0.5rem 0.2rem #9EB589;
+}
+.result{
+    margin-top:3rem;
+}
+#scoreText{
+    font-size: 1.5rem;
+}
+.overbtn{
+    border:none;
+    background-color: #F3DDCF;
+    color: #4D4343;
+    padding: 0.7rem;
+    font-size: 1.7rem;
+    border-radius: 0.8rem;
+    transition: background 0.3s;
+    margin-top: 2rem;
+    box-shadow: 0 0 0.5rem 0.2rem rgb(187, 187, 187);
 }
 
 

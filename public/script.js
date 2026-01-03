@@ -72,7 +72,7 @@ function nextQuestion() {
     } else {
         // Finished
         let scoreText = document.getElementById("scoreText");
-        scoreText.textContent = `You answered ${score} out of ${questions.length} correctly.`;
+        scoreText.textContent = `You answered ${score} / ${questions.length} correctly.`;
         document.getElementById("resultOverlay").style.display = "block";
     }
 }
