@@ -31,7 +31,7 @@ $result = $conn->query("
     <title>Admin - Quiz List</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="quiz">
+<body>
     <div class="H">
     <h1>Quiz Management</h1>
 
