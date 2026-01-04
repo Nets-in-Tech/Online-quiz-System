@@ -1,7 +1,6 @@
 
 body { 
-    
-    margin: 2rem; /* remove default body margin */ 
+  margin: 2rem;  
   background-color: #ffffff;
   color: #000000;
 }
@@ -56,14 +55,6 @@ form label {
 
 
 /*quiz list*/
-
-body.quiz{
-  padding: 0;
-  overflow-y: auto; 
-  /* scroll only if needed */ 
-  min-height: 100vh;
-  margin:0;
-}
 .H{
   padding:2rem;
 }
@@ -126,7 +117,6 @@ body.quiz{
 
 
 /*quiz.php*/
-
 .quiz-container { 
   margin:20px; 
 }
@@ -134,8 +124,11 @@ body.quiz{
   border:1px solid #ccc; 
   padding:10px; 
   margin-bottom:10px; 
+  margin-left: 2rem;
 }
-
+.side{
+  margin-left:2rem;
+}
 
 
 
@@ -143,9 +136,6 @@ body.quiz{
 .form-container { 
   margin:20px; 
 }
-.question-block { 
-  border:1px solid #ccc; 
-  padding:10px; 
-  margin-bottom:10px; 
+.form-container input{
+  width:17vw;
 }
-
