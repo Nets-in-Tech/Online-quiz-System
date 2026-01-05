@@ -1,4 +1,9 @@
 <?php
+if (preg_match('/Mobile|Android|iPhone|iPad/i', $_SERVER['HTTP_USER_AGENT'])) {
+    include '../includes/block.php';
+    exit;
+}
+
 include '../includes/session.php';
 include '../includes/db.php';
 include '../includes/header.php';
