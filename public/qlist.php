@@ -1,6 +1,6 @@
 <?php
 include '../includes/db.php';
-include 'header.php';
+include '../includes/header.php';
 
 if (!isset($_GET['course_id'])) {
     die("No course selected.");

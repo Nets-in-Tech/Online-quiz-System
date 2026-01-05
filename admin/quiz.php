@@ -1,7 +1,7 @@
 <?php
 include '../includes/session.php';
 include '../includes/db.php';
-include '../public/header.php';
+include '../includes/header.php';
 
 $quizId = $_GET['quiz_id'] ?? null;
 
